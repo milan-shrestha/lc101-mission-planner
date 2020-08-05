@@ -19,6 +19,12 @@ export class CrewComponent implements OnInit {
   }
 
   add(memberName: string, isFirst: boolean) {
+    for (let i = 0; i < this.crew.length; i++) {
+      if (this.crew[i]['name'] === memberName) {
+        alert('Crew member is already on the list.');
+        return;
+      }
+    }
     this.crew.push({name: memberName, firstMission: isFirst});
   }
 
@@ -34,6 +40,16 @@ export class CrewComponent implements OnInit {
  }
 
   save(name: string, member: object) {
+    if (name === '') {
+      alert('Please enter name for the crew member.');
+      return;
+    }
+    for (let i = 0; i < this.crew.length; i++) {
+      if (this.crew[i]['name'] === name) {
+        alert('Crew member is already on the list.');
+        return;
+      }
+    }
     member['name'] = name;
     this.memberBeingEdited = null;
   }
